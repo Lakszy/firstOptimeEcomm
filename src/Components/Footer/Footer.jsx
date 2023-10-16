@@ -21,7 +21,7 @@ const Footer = () => {
       <div className="mb-20 flex justify-center items-center py-4">
         <img
           className="h-[300px] hover:cursor-pointer hover:scale-105 w-full sm:h-[600px] sm:w-[70%] rounded-md shadow-lg shadow-gray-600"
-          onClick={() => navigate(`/filteredProducts/T-Shirts/`)}
+          onClick={() => navigate(`/filteredProducts/electronics/`)}
           src={clothes}
           alt="clothes"
         />
