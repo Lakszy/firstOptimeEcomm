@@ -10,7 +10,7 @@ import {
 import { Button } from "@material-tailwind/react";
 import { addToCart } from "../../features/slideSlicer/cartSlice";
 import { useNavigate } from "react-router";
-
+import { useDispatch } from "react-redux";
 const ProductSectionItem = ({
   id,
   img,
@@ -24,6 +24,7 @@ const ProductSectionItem = ({
 }) => {
   const defaultSize = size[2];
   const defaultColor = color[0];
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
     <>
@@ -79,30 +80,33 @@ const ProductSectionItem = ({
             </div>
           </CardBody>
           <CardFooter className="flex justify-center pt-2">
-            <Tooltip content="Add to Cart" placement="bottom">
-              <Button
-                onClick={() => {
-                  addToCart({
-                    id: id,
-                    img: img,
-                    text: text,
-                    amount: 1,
-                    price: price,
-                    totalPrice: totalPrice,
-                    name: name,
-                    size: defaultSize,
-                    color: defaultColor,
-                  });
-                  alert(name + " Added To Your Cart :)");
-                }}
-                size="sm"
-                color="gray"
-                variant="outlined"
-                ripple={true}
-              >
-                Add to Cart
-              </Button>
-            </Tooltip>
+          <Tooltip content="Add to Cart" placement="bottom">
+                  <Button
+                    className="hover:scale-110"
+                    color="gray"
+                    size="lg"
+                    variant="outlined"
+                    ripple={true}
+                    onClick={() => {
+                      dispatch(
+                        addToCart({
+                          id: id,
+                          color: color,
+                          name: name,
+                          price: price,
+                          totalPrice: price,
+                          amount: 1,
+                          size: size,
+                          img: img,
+                          text: text,
+                        })
+                      );
+                      alert(name + " Added To Your Cart :)");
+                    }}
+                  >
+                    Add to Cart
+                  </Button>
+                </Tooltip>
           </CardFooter>
         </Card>
       </div>
