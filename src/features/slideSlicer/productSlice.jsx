@@ -1,13 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {storeData} from "../../assets/data/dummyData"
+import { storeData } from "../../assets/data/dummyData";
+
+const loadFromLocalStorage = (key) => {
+  const item = localStorage.getItem(key);
+  return item ? JSON.parse(item) : storeData;
+};
 
 export const productSlice = createSlice({
   name: "products",
   initialState: {
-    filteredProducts:
-      JSON.parse(sessionStorage.getItem("filteredData")) || storeData,
-    singleProduct:
-      JSON.parse(sessionStorage.getItem("singleProduct")) || storeData,
+    filteredProducts: loadFromLocalStorage("filteredData"),
+    singleProduct: loadFromLocalStorage("singleProduct"),
     error: false,
   },
   reducers: {
@@ -19,7 +22,7 @@ export const productSlice = createSlice({
         state.filteredProducts = filter;
         state.error = false;
         const savedState = JSON.stringify(filter);
-        sessionStorage.setItem("filteredData", savedState);
+        localStorage.setItem("filteredData", savedState);
       } catch (err) {
         return err;
       }
@@ -31,7 +34,7 @@ export const productSlice = createSlice({
         );
         state.singleProduct = oneProduct;
         const savedState = JSON.stringify(oneProduct);
-        sessionStorage.setItem("singleProduct", savedState);
+        localStorage.setItem("singleProduct", savedState);
       } catch (err) {
         return err;
       }
@@ -47,7 +50,7 @@ export const productSlice = createSlice({
         if (oneGenderType) {
           state.error = false;
           const saveState = JSON.stringify(gender);
-          sessionStorage.setItem("filteredData", saveState);
+          localStorage.setItem("filteredData", saveState);
         } else {
           state.error = true;
           state.filteredProducts = [];
@@ -69,7 +72,7 @@ export const productSlice = createSlice({
           if (!noError) {
             state.filteredProducts = price;
             const saveState = JSON.stringify(price);
-            sessionStorage.setItem("filteredData", saveState);
+            localStorage.setItem("filteredData", saveState);
           }
         } else {
           state.error = true;
@@ -93,7 +96,7 @@ export const productSlice = createSlice({
           state.error = false;
           state.filteredProducts = color;
           const saveState = JSON.stringify(color);
-          sessionStorage.setItem("filteredData", saveState);
+          localStorage.setItem("filteredData", saveState);
         }
       } catch (err) {
         return err;
@@ -113,7 +116,7 @@ export const productSlice = createSlice({
           state.error = false;
           state.filteredProducts = size;
           const saveState = JSON.stringify(size);
-          sessionStorage.setItem("filteredData", saveState);
+          localStorage.setItem("filteredData", saveState);
         }
       } catch (err) {
         return err;

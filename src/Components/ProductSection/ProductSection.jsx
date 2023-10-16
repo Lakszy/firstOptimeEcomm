@@ -7,7 +7,7 @@ const ProductSection = () => {
     <div>
 
       <div className="pt-16 grid grid-cols-2 lg:grid-cols-3 justify-items-center py-8 gap-4 mx-auto max-w-7xl">
-        {storeData.slice(0, 12).map((product, index) => (
+        {storeData.slice(0, 18).map((product, index) => (
             <ProductSectionItem
               id={product.id}
               type={product.type}

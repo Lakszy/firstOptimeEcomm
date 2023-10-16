@@ -22,7 +22,6 @@ const ProductSectionItem = ({
   color,
   totalPrice,
 }) => {
-  console.log(type);
   const defaultSize = size[2];
   const defaultColor = color[0];
   const navigate = useNavigate();

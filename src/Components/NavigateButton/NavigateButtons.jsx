@@ -11,7 +11,6 @@ const NavigateButtons = () => {
     "electronics",
     "wclothing",
   ];
-console.log(filterProducts);
   const dispatch = useDispatch();
 
   return (
