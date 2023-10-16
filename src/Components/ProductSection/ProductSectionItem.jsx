@@ -27,14 +27,14 @@ const ProductSectionItem = ({
   const navigate = useNavigate();
   return (
     <>
-      <div className="mb-4 p-2 md:p-0">
+      <div className="mb-8 p-2 justify-between w-52 md:w-96 md:p-0">
         <Card className="relative">
-          <CardHeader className="h-60 md:h-96">
+          <CardHeader className="h-60 md:h-96 ">
             <img
               onClick={() => navigate(`/filteredProducts/${type}`)}
               src={img}
               alt={name}
-              className="w-full h-full object-cover"
+              className="w-full jus h-full object-cover"
             />
           </CardHeader>
           <CardBody className="text-center">
